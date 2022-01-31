@@ -4,3 +4,9 @@ shapefiles:
 	mkdir -p shapefiles
 	mv statistical-gis-boundaries-london/ESRI/London_Borough_Excluding_MHW* shapefiles/
 	rm -rf statistical-gis-boundaries-london statistical-gis-boundaries-london.zip
+
+requirements.txt:
+	pipenv lock -r > requirements.txt
+
+container: shapefiles requirements.txt
+	docker build -t lambda-cycles .
