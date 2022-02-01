@@ -1,3 +1,6 @@
+**/.terraform/*
+*.tfstate
+*.tfstate.*
 */.ipynb_checkpoints/*
 .idea/
 .ipynb_checkpoints
