@@ -22,15 +22,6 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: eu-west-1
 
-    - name: Set up terraform
-      uses: hashicorp/setup-terraform@v1
-
-    - name: Terraform init
-      run: terraform -chdir=terraform init
-
-    - name: Terraform plan
-      run: terraform -chdir=terraform plan
-
     - name: Set up Python 3.8
       uses: actions/setup-python@v1
       with:
@@ -47,12 +38,24 @@ jobs:
     - name: Pack docker image
       run: docker save lambda-cycles > ./lambda-cycles.tar
 
-    - name: Temporarily save Docker image
+    - name: Temporarily save Docker image and dependencies
       uses: actions/upload-artifact@v2
       with:
-        name: lambda-cycles
-        path: ./lambda-cycles.tar
+        name: lambda-cycles-build
+        path: |
+          ./shapefiles/
+          ./requirements.txt
+          ./lambda-cycles.tar
         retention-days: 1
+
+    - name: Set up terraform
+      uses: hashicorp/setup-terraform@v1
+
+    - name: Terraform init
+      run: terraform -chdir=terraform init
+
+    - name: Terraform plan
+      run: terraform -chdir=terraform plan
 
   deploy:
     name: Deploy
@@ -72,10 +75,10 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: eu-west-1
 
-    - name: Retrieve saved Docker image
+    - name: Retrieve saved Docker image and dependencies
       uses: actions/download-artifact@v2
       with:
-        name: lambda-cycles
+        name: lambda-cycles-build
         path: ./
 
     - name: Docker load
