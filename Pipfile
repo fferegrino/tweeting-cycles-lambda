@@ -12,8 +12,6 @@ seaborn = "*"
 twython = "*"
 
 [dev-packages]
-jupyter = "*"
-jupyterlab = "*"
 
 [requires]
 python_version = "3.8"
