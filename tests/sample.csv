@@ -1,0 +1,6 @@
+name,lat,lon,bikes,empty_docks,docks,query_time,proportion
+"Tanner Street, Bermondsey",51.500647,-0.0786,30,11,41,2022-02-18 18:40:00,0.7317073170731707
+"Sancroft Street, Vauxhall",51.489479,-0.115156,18,5,24,2022-02-18 18:40:00,0.7916666666666666
+"Bayley Street , Bloomsbury",51.518587,-0.132053,13,12,25,2022-02-18 18:40:00,0.52
+"Tavistock Place, Bloomsbury",51.52625,-0.123509,9,9,19,2022-02-18 18:40:00,0.5263157894736842
+"Harrington Square 1, Camden Town",51.533019,-0.139174,12,15,27,2022-02-18 18:40:00,0.4444444444444444

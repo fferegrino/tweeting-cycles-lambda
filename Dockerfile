@@ -5,6 +5,6 @@ COPY shapefiles/ ./shapefiles/
 
 RUN pip3 install -r requirements.txt
 
-COPY *.py ${LAMBDA_TASK_ROOT}/
+COPY src/*.py ${LAMBDA_TASK_ROOT}/
 
 CMD ["app.handler"]
