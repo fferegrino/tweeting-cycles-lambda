@@ -52,10 +52,10 @@ resource "aws_ecr_repository" "lambda_image" {
 
 resource "null_resource" "ecr_image" {
   triggers = {
-    python_file_1 = filemd5("../app.py")
-    python_file_2 = filemd5("../plot.py")
-    python_file_3 = filemd5("../tweeter.py")
-    python_file_4 = filemd5("../download.py")
+    python_file_1 = filemd5("../src/app.py")
+    python_file_2 = filemd5("../src/plot.py")
+    python_file_3 = filemd5("../src/tweeter.py")
+    python_file_4 = filemd5("../src/download.py")
     requirements  = filemd5("../requirements.txt")
     docker_file   = filemd5("../Dockerfile")
   }
