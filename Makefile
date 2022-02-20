@@ -10,3 +10,6 @@ requirements.txt:
 
 container: shapefiles requirements.txt
 	docker build -t lambda-cycles .
+
+test: shapefiles
+	PYTHONPATH=src pytest tests/

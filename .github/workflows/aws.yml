@@ -30,7 +30,10 @@ jobs:
     - name: Install pipenv
       run: |
         pip install pipenv
-        pipenv install
+        pipenv install --system --dev
+
+    - name: Test local
+      run: make test
 
     - name: Build lambda-cycles image
       run: make container
