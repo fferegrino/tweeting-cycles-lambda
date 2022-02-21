@@ -17,7 +17,7 @@ test-container: shapefiles requirements.txt requirements-dev.txt
 run-test-container:
 	docker run -t --entrypoint '' test-lambda-cycles python -m pytest tests/
 
-container: shapefiles requirements.txt
+container: shapefiles requirements.txt requirements-dev.txt
 	docker build -t lambda-cycles  --target app .
 
 test: shapefiles
