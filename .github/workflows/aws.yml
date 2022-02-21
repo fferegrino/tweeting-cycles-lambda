@@ -38,6 +38,11 @@ jobs:
     - name: Build lambda-cycles image
       run: make container
 
+    - name: Build and run test image
+      run: |
+        make test-container
+        make run-test-container
+
     - name: Pack docker image
       run: docker save lambda-cycles > ./lambda-cycles.tar
 

@@ -8,6 +8,15 @@ shapefiles:
 requirements.txt:
 	pipenv lock -r > requirements.txt
 
+requirements-dev.txt:
+	pipenv lock --dev -r > requirements-dev.txt
+
+test-container: shapefiles requirements.txt requirements-dev.txt
+	docker build -t test-lambda-cycles --target test-app .
+
+run-test-container:
+	docker run -t --entrypoint '' test-lambda-cycles python -m pytest tests/
+
 container: shapefiles requirements.txt
 	docker build -t lambda-cycles .
 
