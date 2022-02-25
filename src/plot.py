@@ -6,6 +6,7 @@ import pandas as pd
 import seaborn as sns
 from matplotlib.colors import Colormap
 from matplotlib.lines import Line2D
+from matplotlib.offsetbox import AnchoredText
 
 PADDING = 0.005
 
@@ -45,10 +46,10 @@ def set_custom_legend(ax: plt.Axes, cmap: Colormap) -> None:
                 markeredgecolor="k",
             )
         )
-    ax.legend(handles=legend_elements, loc="lower right", prop={"size": 6}, ncol=len(values))
+    ax.legend(handles=legend_elements, loc="upper left", prop={"size": 6}, ncol=len(values))
 
 
-def plot_map(cycles_info: pd.DataFrame) -> str:
+def plot_map(cycles_info: pd.DataFrame, version: str) -> str:
     fig = plt.Figure(figsize=(6, 4), dpi=200, frameon=False)
     ax = plt.Axes(fig, [0.0, 0.0, 1.0, 1.0])
     fig.add_axes(ax)
@@ -65,6 +66,9 @@ def plot_map(cycles_info: pd.DataFrame) -> str:
     sns.scatterplot(
         y="lat", x="lon", hue="proportion", edgecolor="k", linewidth=0.1, palette=cmap, data=cycles_info, s=25, ax=ax
     )
+
+    text = AnchoredText(f"Tweeting lambda, version {version}", loc=4, prop={"size": 5}, frameon=True)
+    ax.add_artist(text)
 
     set_custom_legend(ax, cmap)
 

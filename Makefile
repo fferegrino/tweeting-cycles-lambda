@@ -11,6 +11,14 @@ requirements.txt:
 requirements-dev.txt:
 	pipenv lock --dev -r > requirements-dev.txt
 
+lint:
+	isort . --check-only
+	black . --check
+
+fmt:
+	isort .
+	black .
+
 test-container: shapefiles requirements.txt requirements-dev.txt
 	docker build -t test-lambda-cycles --target test-app .
 

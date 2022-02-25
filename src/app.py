@@ -2,10 +2,12 @@ from download import download_cycles_info
 from plot import plot_map
 from tweeter import tweet
 
+VERSION = "0.0"
+
 
 def execute():
     information = download_cycles_info()
-    map_image = plot_map(information)
+    map_image = plot_map(information, VERSION)
     tweet(map_image)
 
 

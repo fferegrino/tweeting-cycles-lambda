@@ -32,9 +32,7 @@ def download_cycles_info() -> pd.DataFrame:
             )
         )
 
-    data_df = pd.DataFrame(
-        data, columns=["id", "name", "lat", "lon", "bikes", "empty_docks", "docks"]
-    ).set_index("id")
+    data_df = pd.DataFrame(data, columns=["id", "name", "lat", "lon", "bikes", "empty_docks", "docks"]).set_index("id")
     data_df["query_time"] = pd.to_datetime(query_time).floor("Min")
     data_df["proportion"] = (data_df["docks"] - data_df["empty_docks"]) / data_df["docks"]
 

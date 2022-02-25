@@ -32,6 +32,9 @@ jobs:
         pip install pipenv
         pipenv install --system --dev
 
+    - name: Check for style
+      run: make lint
+
     - name: Test local
       run: make test
 
@@ -69,7 +72,7 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     needs: build
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && contains(github.ref, 'refs/tags/')
 
     steps:
 
