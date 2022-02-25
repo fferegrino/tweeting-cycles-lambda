@@ -15,6 +15,7 @@ twython = "*"
 pytest = "*"
 isort = "*"
 black = "*"
+bump2version = "*"
 
 [requires]
 python_version = "3.8"
