@@ -1,9 +1,6 @@
 on:
-  push:
-    branches:
-      - main
-    tags:
-      - 'v*'
+  pull_request:
+    - main
 
 name: Build and deploy lambda-cycles image
 
@@ -55,6 +52,3 @@ jobs:
 
     - name: Terraform plan
       run: terraform -chdir=terraform plan
-
-    - name: Terraform apply
-      run: terraform -chdir=terraform apply -auto-approve
