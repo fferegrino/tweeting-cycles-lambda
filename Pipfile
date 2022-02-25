@@ -13,6 +13,8 @@ twython = "*"
 
 [dev-packages]
 pytest = "*"
+isort = "*"
+black = "*"
 
 [requires]
 python_version = "3.8"

@@ -32,6 +32,9 @@ jobs:
         pip install pipenv
         pipenv install --system --dev
 
+    - name: Check for style
+      run: make lint
+
     - name: Test local
       run: make test
 
