@@ -31,6 +31,7 @@ locals {
   ecr_repository_name = "${local.prefix}-image-repo"
   region              = "eu-west-1"
   ecr_image_tag       = "latest"
+  minutes             = "30"
 }
 
 data "aws_secretsmanager_secret" "twitter_secrets" {
@@ -134,8 +135,8 @@ resource "aws_lambda_function" "lambda" {
 
 resource "aws_cloudwatch_event_rule" "every_x_minutes" {
   name                = "${local.prefix}-event-rule-lambda"
-  description         = "Fires every 15 minutes"
-  schedule_expression = "cron(0/20 * * * ? *)"
+  description         = "Fires every ${local.minutes} minutes"
+  schedule_expression = "cron(0/${local.minutes} * * * ? *)"
 }
 
 resource "aws_cloudwatch_event_target" "trigger_every_x_minutes" {
