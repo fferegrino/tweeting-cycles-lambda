@@ -1,6 +1,7 @@
 on:
-  pull_request:
-    - main
+  pull_request: 
+    branches:
+      - main
 
 name: Build and deploy lambda-cycles image
 
